@@ -1,0 +1,15 @@
+services:
+  flaskapp:
+    image: andres/webapp
+    environment:
+      - FLASK_APP=/app/webapp/run.py 
+
+  nginx:
+    image: nginx:1.27.2
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "./nginx/nginx.conf:/etc/nginx/nginx.conf"
+      - "./nginx/certificate.crt:/etc/ssl/nginx/certificate.crt"
+      - "./nginx/private.key:/etc/ssl/nginx/private.key"
